@@ -1,5 +1,9 @@
 $(function () {
 	function codes() {
+		// 先卸载之前注入的代码
+		if (window.undoInject)
+			window.undoInject();
+
 		var network = NEJ.P("nej.j"),
 			oldAjax = network.KH;
 
