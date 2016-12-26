@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>网易云音乐客户端增强</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous">
+	<style>
+
+body { font-family: sans-serif, 'Microsoft JHengHei UI', 'Microsoft YaHei UI' }
+
+.injection
+	{ padding: 1rem 0 3rem; color: #fff; background: radial-gradient(ellipse at center,rgba(143,2,34,1) 0%,rgba(143,2,34,1) 48%,rgba(109,0,25,1) 100%);  }
+
+.injection small { color: #ccc; }
+.injection a { color: rgb(79, 163, 234); }
+
+.injection iframe
+	{ background: white; box-shadow: 2px 2px 3px rgba(255,255,255,0.75); margin-bottom: 1em; border-radius: 3px; }
+
+.readme { background: #151515; color: #bbb; padding: 3rem 0 1rem; }
+
+	</style>
+</head>
+<body>
+	<section class="injection">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7">
+					<h1>获取认证 <small><a id="backup-url" href="http://127.0.0.1:2015/json" target="_blank">无法显示?</a></small></h1>
+					<iframe id="debug-frame" src="http://127.0.0.1:2015/json" frameborder="0" width="100%" height="200"></iframe>
+
+					<p class="input-group">
+						<span class="input-group-addon">/remote-debugging-port=</span>
+						<input type="text" class="form-control" id="port" value="2015">
+					</p>
+				</div>
+
+
+				<div class="col-md-5">
+					<h1>认证信息</h1>
+					<p class="input-group">
+						<span class="input-group-addon">webSocketDebuggerUrl: </span>
+						<input type="text" class="form-control" id="webSocketDebuggerUrl" value="...">
+					</p>
+
+					<p><button class="btn btn-primary" id="inject">注入代码</button> <button class="btn btn-danger" id="un-inject">卸载注入</button></p>
+
+					<div>
+						<h2>相关说明 <small>// Credits</small></h2>
+						
+						<p>该界面参考了
+							<a href="https://bruce55.github.io/Netease_cloudmusic_lastfm_scrobbler/" target="_blank">云音乐 + Last.FM</a> 制作而成，感谢 <a href="https://github.com/bruce55" target="_blank">@bruce55</a>。</p>
+
+						<p>该界面使用了下述开源程序：<a href="https://jquery.com/" target="_blank">jQuery</a>、<a href="https://getbootstrap.com/" target="_blank">Bootstrap</a>。</p>
+
+						<p>《<a href="http://music.163.com/">网易云音乐</a>》为网易公司所提供的一个在线云音乐服务。</p>
+
+						<p>制作：<a href="https://jixun.moe/" title="梦姬博客" target="_blank">Jixun</a> (<a href="https://github.com/JixunMoe" target="_blank">@GitHub</a>)</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="readme">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-7">
+					<h1>使用方法</h1>
+
+					<ol>
+						<li>找到《网易云音乐》的快捷方式，右键属性，在目标最后面加入 <code>/remote-debugging-port=2015</code>。
+							<br>※ 其中 <code>2015</code> 可以替换为其它没有被占用的端口。</li>
+
+						<li>如果《网易云音乐》已经启动，请退出网易云音乐客户端。</li>
+
+						<li>通过快捷方式启动《网易云音乐》客户端。</li>
+
+						<li>输入填写的端口号后回车，此时应显示 <code>ws://localhost:...</code> 开始的一段文字 (倒数第二行)。</li>
+
+						<li>将这段文字复制到 <code>webSocketDebuggerUrl</code> 处后即可通过注入按钮操作。</li>
+					</ol>
+
+					<p>※ 仅测试于《网易云音乐》PC 客户端 <code>v2.1.1 (build 161566)</code>，其他版本可能不兼容。</p>
+				</div>
+
+				<img src="https://bruce55.github.io/Netease_cloudmusic_lastfm_scrobbler/web_injection/wyy.png" alt="" class="pull-right col-md-5 img-responsive">
+			</div>
+		</div>
+	</section>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="./app.js"></script>
+</body>
+</html>
